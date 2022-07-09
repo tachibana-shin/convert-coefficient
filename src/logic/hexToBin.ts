@@ -1,3 +1,5 @@
+import chalk from "chalk";
+
 export function hexToBin(hex: string) {
   let bin = "";
   const steps = [];
@@ -9,8 +11,7 @@ export function hexToBin(hex: string) {
     steps.push(`hex[${i}]: ${hexChar} = ${binChar}`);
   }
 
-  steps.push({
-    message: `Computed, bin = ${bin}`,
-    color: "green",
-  });
+  steps.push(chalk.greenBright(`Computed, bin = ${bin}`));
+
+  return steps;
 }

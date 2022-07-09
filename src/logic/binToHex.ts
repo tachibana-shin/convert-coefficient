@@ -1,3 +1,5 @@
+import chalk from "chalk";
+
 export function binToHex(bin: string) {
   const steps = [];
 
@@ -11,7 +13,7 @@ export function binToHex(bin: string) {
       .reverse()
       .join("");
 
-    groups.push("0".repeat(4 - group.length) + group);
+    groups.push(chalk.magentaBright("0".repeat(4 - group.length)) + group);
   }
 
   let result = "";
@@ -21,10 +23,7 @@ export function binToHex(bin: string) {
     steps.push(`${group} = ${r}`);
   });
 
-  steps.push({
-    message: `Computed, hex = ${result}`,
-    color: "green",
-  });
+  steps.push(chalk.greenBright(`Computed, hex = ${result}`));
 
-  return steps
+  return steps;
 }

@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { separateInt } from "../utils/separate-int";
 
 export function fromDecimal(
@@ -18,11 +19,17 @@ export function fromDecimal(
 
   let binPrimely;
   if (float !== 0) {
-    steps.push(`Split ${value} into primely(${primely}) and decimal(${float})`);
-    steps.push({
-      message: `Computing binary representation of primely(${primely})`,
-      color: "grey",
-    });
+    steps.push(
+      chalk.bold(
+        `Split ${value} into primely(${primely}) and decimal(${float})`
+      )
+    );
+
+    steps.push(
+      "",
+      chalk.bold(`** Computing binary representation of primely(${primely})`),
+      ""
+    );
   }
 
   if (primely !== 0) {
@@ -33,27 +40,31 @@ export function fromDecimal(
       const bkp = primely;
       primely = ~~(primely / coefficient);
 
-      const rAliased = r.toString(coefficient);
+      const rAliased = r.toString(coefficient).toUpperCase();
       steps.push(
-        `${bkp} / ${coefficient} = ${primely} (R=${r} alias ${rAliased})`
+        `${bkp} / ${coefficient} = ${primely} (${chalk.cyan(
+          `R=${r} alias ${chalk.magentaBright(rAliased)}`
+        )})`
       );
       bit.push(rAliased);
     }
 
-    steps.push({
-      message: `Computed, reverse array bit R = ${(binPrimely = bit
-        .reverse()
-        .join(""))}`,
-      color: "green",
-    });
+    steps.push(
+      chalk.greenBright(
+        `Computed, reverse array bit R = ${(binPrimely = bit
+          .reverse()
+          .join(""))}`
+      )
+    );
   }
 
   let binFloat;
   if (float !== 0) {
-    steps.push({
-      message: `Computing binary representation of decimal(${float})`,
-      color: "grey",
-    });
+    steps.push(
+      "",
+      chalk.bold(`** Computing binary representation of decimal(${float})`),
+      ""
+    );
 
     const bits = [];
     for (let i = 0; i < maxLengthFloat && float !== 0; i++) {
@@ -65,27 +76,27 @@ export function fromDecimal(
       const pAliased = tmp.primely.toString(coefficient);
       bits.push(pAliased);
       steps.push(
-        `${bkp} * ${coefficient} = ${result} (R=${tmp.primely} alias ${pAliased})`
+        `${bkp} * ${coefficient} = ${result} (${chalk.cyan(
+          `R=${tmp.primely} alias ${chalk.magentaBright(pAliased)}`
+        )})`
       );
     }
 
-    steps.push({
-      message: `Computed, R(limit=${maxLengthFloat}) = ${(binFloat =
-        bits.join(""))}`,
-      color: "green",
-    });
+    steps.push(
+      chalk.greenBright(
+        `Computed, R(limit=${maxLengthFloat}) = ${(binFloat = bits.join(""))}`
+      )
+    );
   }
 
   steps.push("==========================================");
   steps.push(
-    `All done converted ${value} to binary ${binPrimely}.${binFloat ?? 0}`
+    chalk.cyan(
+      `All done converted ${chalk.magentaBright(
+        value
+      )} to binary ${chalk.magentaBright(`${binPrimely}.${binFloat ?? 0}`)}`
+    )
   );
 
   return steps;
 }
-
-console.log(
-  fromDecimal(255.00123, {
-    coefficient: 16,
-  })
-);
