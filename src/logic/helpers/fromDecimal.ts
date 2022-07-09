@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import { colors } from "../../colors";
 import { separateInt } from "../utils/separate-int";
 
 export function fromDecimal(
@@ -20,14 +20,14 @@ export function fromDecimal(
   let binPrimely;
   if (float !== 0) {
     steps.push(
-      chalk.bold(
+      colors.bold(
         `Split ${value} into primely(${primely}) and decimal(${float})`
       )
     );
 
     steps.push(
       "",
-      chalk.bold(`** Computing binary representation of primely(${primely})`),
+      colors.bold(`** Computing binary representation of primely(${primely})`),
       ""
     );
   }
@@ -42,15 +42,15 @@ export function fromDecimal(
 
       const rAliased = r.toString(coefficient).toUpperCase();
       steps.push(
-        `${bkp} / ${coefficient} = ${primely} (${chalk.cyan(
-          `R=${r} alias ${chalk.magentaBright(rAliased)}`
+        `${bkp} / ${coefficient} = ${primely} (${colors.cyan(
+          `R=${r} alias ${colors.magentaBright(rAliased)}`
         )})`
       );
       bit.push(rAliased);
     }
 
     steps.push(
-      chalk.greenBright(
+      colors.greenBright(
         `Computed, reverse array bit R = ${(binPrimely = bit
           .reverse()
           .join(""))}`
@@ -62,7 +62,7 @@ export function fromDecimal(
   if (float !== 0) {
     steps.push(
       "",
-      chalk.bold(`** Computing binary representation of decimal(${float})`),
+      colors.bold(`** Computing binary representation of decimal(${float})`),
       ""
     );
 
@@ -76,14 +76,14 @@ export function fromDecimal(
       const pAliased = tmp.primely.toString(coefficient);
       bits.push(pAliased);
       steps.push(
-        `${bkp} * ${coefficient} = ${result} (${chalk.cyan(
-          `R=${tmp.primely} alias ${chalk.magentaBright(pAliased)}`
+        `${bkp} * ${coefficient} = ${result} (${colors.cyan(
+          `R=${tmp.primely} alias ${colors.magentaBright(pAliased)}`
         )})`
       );
     }
 
     steps.push(
-      chalk.greenBright(
+      colors.greenBright(
         `Computed, R(limit=${maxLengthFloat}) = ${(binFloat = bits.join(""))}`
       )
     );
@@ -91,10 +91,10 @@ export function fromDecimal(
 
   steps.push("==========================================");
   steps.push(
-    chalk.cyan(
-      `All done converted ${chalk.magentaBright(
-        value
-      )} to binary ${chalk.magentaBright(`${binPrimely}.${binFloat ?? 0}`)}`
+    colors.cyan(
+      `All done converted ${colors.magentaBright(
+        value + ""
+      )} to binary ${colors.magentaBright(`${binPrimely}.${binFloat ?? 0}`)}`
     )
   );
 

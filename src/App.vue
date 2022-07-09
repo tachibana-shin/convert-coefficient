@@ -18,7 +18,7 @@
   <br />
 
   <h5 class="my-none">Console</h5>
-  <code v-html="ansi.toHtml(result.join('\n'))" />
+  <code v-html="result.join('\n')" />
 </template>
 
 <script lang="ts" setup>
@@ -29,10 +29,6 @@ import { decToBin } from "./logic/decToBin";
 import { decToHex } from "./logic/decToHex";
 import { hexToBin } from "./logic/hexToBin";
 import { hexToDec } from "./logic/hexToDec";
-
-import Ansi from "ansi-to-html";
-
-const ansi = new Ansi();
 
 type Type = "hex" | "bin" | "dec";
 
@@ -72,7 +68,7 @@ const result = computed(() => {
 body {
   background-color: #111;
   color: #eee;
-  line-height: 1.5
+  line-height: 1.5;
 }
 </style>
 

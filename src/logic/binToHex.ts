@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import { colors } from "../colors";
 
 export function binToHex(bin: string) {
   const steps = [];
@@ -13,7 +13,7 @@ export function binToHex(bin: string) {
       .reverse()
       .join("");
 
-    groups.push(chalk.magentaBright("0".repeat(4 - group.length)) + group);
+    groups.push(colors.magentaBright("0".repeat(4 - group.length)) + group);
   }
 
   let result = "";
@@ -23,7 +23,7 @@ export function binToHex(bin: string) {
     steps.push(`${group} = ${r}`);
   });
 
-  steps.push(chalk.greenBright(`Computed, hex = ${result}`));
+  steps.push(colors.greenBright(`Computed, hex = ${result}`));
 
   return steps;
 }

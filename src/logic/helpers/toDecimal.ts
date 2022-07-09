@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import { colors } from "../../colors";
 
 export function toDecimal(
   bin: string,
@@ -14,28 +14,28 @@ export function toDecimal(
 
   let decimal = 0;
   for (let i = 0; i < bin.length; i++) {
-    if (bin[i] === ".") steps.push("", chalk.bold("** Computing float"), "");
+    if (bin[i] === ".") steps.push("", colors.bold("** Computing float"), "");
 
     const m = length - i - (i >= length ? 0 : 1);
     const bit = Number(parseInt(bin[i] as string, coefficient));
     const result = bit * coefficient ** m;
 
     steps.push(
-      `bit[${i}]: ${chalk.magentaBright(
+      `bit[${i}]: ${colors.magentaBright(
         bin[i]
       )} * ${coefficient}^${m} = ${result}`
     );
     decimal += result;
   }
 
-  steps.push(chalk.greenBright(`Computed, decimal sum = ${decimal}`));
+  steps.push(colors.greenBright(`Computed, decimal sum = ${decimal}`));
 
   steps.push("==========================================");
   steps.push(
-    chalk.cyan(
-      `All done converted ${chalk.magentaBright(
+    colors.cyan(
+      `All done converted ${colors.magentaBright(
         bin
-      )} to decimal ${chalk.magentaBright(decimal)}`
+      )} to decimal ${colors.magentaBright(decimal + "")}`
     )
   );
   return steps;

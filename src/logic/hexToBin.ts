@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import { colors } from "../colors";
 
 export function hexToBin(hex: string) {
   let bin = "";
@@ -11,7 +11,7 @@ export function hexToBin(hex: string) {
     steps.push(`hex[${i}]: ${hexChar} = ${binChar}`);
   }
 
-  steps.push(chalk.greenBright(`Computed, bin = ${bin}`));
+  steps.push(colors.greenBright(`Computed, bin = ${bin}`));
 
   return steps;
 }
