@@ -74,7 +74,7 @@ body {
 
 <style lang="scss" scoped>
 code {
-  white-space: pre;
+  white-space: pre-wrap;
   text-align: left;
   background-color: #060a0e;
   color: #eee;

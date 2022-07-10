@@ -14,7 +14,10 @@ export function toDecimal(
 
   let decimal = 0;
   for (let i = 0; i < bin.length; i++) {
-    if (bin[i] === ".") steps.push("", colors.bold("** Computing float"), "");
+    if (bin[i] === ".") {
+      steps.push("", colors.bold("** Computing float"), "");
+      continue;
+    }
 
     const m = length - i - (i >= length ? 0 : 1);
     const bit = Number(parseInt(bin[i] as string, coefficient));
