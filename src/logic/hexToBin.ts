@@ -12,7 +12,7 @@ export function hexToBin(hex: string) {
   }
 
   steps.push(colors.greenBright(`Computed, bin = ${bin}`));
-  steps.push(colors.cyan(`Computed by C++: `) + colors.magentaBright(hex) + " = " + colors.magentaBright(parseInt(hex, 16).toString(2)));
+  steps.push(colors.cyan(`Computed by parseInt `) + colors.magentaBright(hex) + " = " + colors.magentaBright(parseInt(hex, 16).toString(2)));
 
   return steps;
 }

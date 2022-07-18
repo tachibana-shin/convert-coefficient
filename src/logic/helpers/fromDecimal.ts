@@ -35,7 +35,7 @@ export function fromDecimal(
   if (primely !== 0) {
     const bit = [];
 
-    for (; primely > 0; ) {
+    for (; primely > 0;) {
       const r = primely % coefficient;
       const bkp = primely;
       primely = ~~(primely / coefficient);
@@ -97,6 +97,7 @@ export function fromDecimal(
       )} to binary ${colors.magentaBright(`${binPrimely}.${binFloat ?? 0}`)}`
     )
   );
+  steps.push(colors.cyan(`Computed by parseInt `) + colors.magentaBright(value + "") + " = " + colors.magentaBright(value.toString(coefficient)));
 
   return steps;
 }

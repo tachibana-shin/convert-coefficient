@@ -56,6 +56,7 @@ export function binToHex(bin: string) {
       )} to hex ${colors.magentaBright(`${rInt}.${rDec ?? 0}`)}`
     )
   );
+  steps.push(colors.cyan(`Computed by parseInt `) + colors.magentaBright(bin) + " = " + colors.magentaBright(parseInt(bin, 2).toString(16)));
 
   return steps;
 }

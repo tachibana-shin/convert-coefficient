@@ -41,5 +41,7 @@ export function toDecimal(
       )} to decimal ${colors.magentaBright(decimal + "")}`
     )
   );
+  steps.push(colors.cyan(`Computed by parseInt `) + colors.magentaBright(bin) + " = " + colors.magentaBright(parseInt(bin, coefficient).toString(16)));
+
   return steps;
 }
