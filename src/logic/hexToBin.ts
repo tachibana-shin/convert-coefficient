@@ -7,8 +7,9 @@ export function hexToBin(hex: string) {
   for (let i = 0; i < hex.length; i++) {
     const hexChar = hex[i];
     const binChar = parseInt(hexChar, 16).toString(2);
-    bin += "0".repeat(4 - binChar.length) + binChar;
-    steps.push(`hex[${i}]: ${hexChar} = ${binChar}`);
+    const offset = "0".repeat(4 - binChar.length)
+    bin += offset + binChar;
+    steps.push(`hex[${i}]: ${hexChar} = ${colors.magentaBright(offset) + binChar}`);
   }
 
   steps.push(colors.greenBright(`Computed, bin = ${bin}`));
